@@ -1,9 +1,12 @@
+// apı ın url ı key ıcınde degıskende saklanır
 const url = "https://api.openweathermap.org/data/2.5/";
 const key = "7994916e07a2aaf37f9f5fa8d5cc0570";
 
+// !html den gelenler
 const box = document.querySelector(".weather-box");
 const searchBar = document.getElementById("searchBar");
 
+// klavye ıle olay ızleyıcısı
 searchBar.addEventListener("keypress", setQuery);
 
 function setQuery(e) {
@@ -11,7 +14,7 @@ function setQuery(e) {
     getResult(searchBar.value);
   }
 }
-
+// kullanıcı sehır ısmı gırdıgınde apı a ıstek atar
 function getResult(cityName) {
   let query = `${url}weather?q=${cityName}&appid=${key}&units=metric&lang=tr`;
   fetch(query)
@@ -21,6 +24,7 @@ function getResult(cityName) {
     .then(displayResult);
 }
 
+// sehrin sonucunu ogrenme ve ekrana basma
 const displayResult = (result) => {
   let city = document.querySelector(".city");
   city.innerText = `${result.name},${result.sys.country}`;
@@ -49,11 +53,18 @@ const displayResult = (result) => {
     case "az bulutlu":
       image.src = "kapalii.png";
       break;
+    case "parçalı az bulutlu":
+      image.src = "kapalii.png";
+      break;
+
     case "kapalı":
       image.src = "kapalii.png";
       break;
     case "kar yağışlı":
       image.src = "karli.png";
+      break;
+    case "hafif yağmur":
+      image.src = "yagmur.png";
       break;
     case "yagmurlu":
       image.src = "yagmur.png";
